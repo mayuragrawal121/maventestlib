@@ -1,55 +1,7 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "com.jfrog.bintray"
 // This is the library version used when deploying the artifact
-version = "1.0"
-
-android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
-    defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName version
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-}
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'maventestlib'
-
-    publishedGroupId = 'com.github.maventestlib'
-    libraryName = 'maventestlib'
-    artifact = 'maventestlib'
-
-    libraryDescription = 'test project'
-
-    siteUrl = 'https://github.com/mayuragrawal121/maventestlib'
-    gitUrl = 'https://github.com/mayuragrawal121/maventestlib'
-
-    libraryVersion = '1.0'
-
-    developerId = 'mayur01'
-    developerName = 'Mayur Agrawal'
-    developerEmail = 'mayuragrawal212@gmail.com'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-
-//// This is the library version used when deploying the artifact
 //version = "1.0"
 //
 //android {
@@ -73,87 +25,146 @@ ext {
 //    compile fileTree(dir: 'libs', include: ['*.jar'])
 //
 //}
-//def siteUrl = 'https://github.com/mayuragrawal121/maventestlib'      // Homepage URL of the library
-//def gitUrl = 'https://github.com/mayuragrawal121/maventestlib.git'   // Git repository URL
-//group = "com.mikhaellopez"                                          // Maven Group ID for the artifact
+//ext {
+//    bintrayRepo = 'maven'
+//    bintrayName = 'maventestlib'
 //
-//install {
-//    repositories.mavenInstaller {
-//        // This generates POM.xml with proper parameters
-//        pom {
-//            project {
-//                packaging 'aar'
+//    publishedGroupId = 'com.github.maventestlib'
+//    libraryName = 'maventestlib'
+//    artifact = 'maventestlib'
 //
-//                // Add your description here
-//                name 'com.github.maventestlib:maventestlib' // TODO
-//                description = 'test project' // TODO
-//                url siteUrl
+//    libraryDescription = 'test project'
 //
-//                // Set your license
-//                licenses {
-//                    license {
-//                        name 'The Apache Software License, Version 2.0'
-//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//                    }
-//                }
-//                developers {
-//                    developer {
-//                        id 'maventestlib' // TODO
-//                        name 'Mayur Agrawal' // TODO
-//                        email 'mayuragrawal212@gmail.com' // TODO
-//                    }
-//                }
-//                scm {
-//                    connection gitUrl
-//                    developerConnection gitUrl
-//                    url siteUrl
-//                }
-//            }
-//        }
-//    }
+//    siteUrl = 'https://github.com/mayuragrawal121/maventestlib'
+//    gitUrl = 'https://github.com/mayuragrawal121/maventestlib'
+//
+//    libraryVersion = '1.0'
+//
+//    developerId = 'mayur01'
+//    developerName = 'Mayur Agrawal'
+//    developerEmail = 'mayuragrawal212@gmail.com'
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
 //}
-//
-//task sourcesJar(type: Jar) {
-//    from android.sourceSets.main.java.srcDirs
-//    classifier = 'sources'
+
+//apply from: 'https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/install.gradle'
+//apply from: 'https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/bintray.gradle'
+//// This is the library version used when deploying the artifact
+version = "1.0"
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName version
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+//repositories {
+//    jcenter()
 //}
-//
-//task javadoc(type: Javadoc) {
-//    source = android.sourceSets.main.java.srcDirs
-//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-//}
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    classifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//artifacts {
-//    archives javadocJar
-//    archives sourcesJar
-//}
-//
-//Properties properties = new Properties()
-//properties.load(project.rootProject.file('local.properties').newDataInputStream())
-//
-//// https://github.com/bintray/gradle-bintray-plugin
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//
-//    configurations = ['archives']
-//    pkg {
-//        repo = "maven"
-//        // it is the name that appears in bintray when logged
-//        name = "com.github.maventestlib:maventestlib" // TODO
-//        websiteUrl = siteUrl
-//        vcsUrl = gitUrl
-//        licenses = ["Apache-2.0"]
-//        publish = true
-//        version {
-//            gpg {
-//                sign = true //Determines whether to GPG sign the files. The default is false
-//                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
-//            }
-//        }
-//    }
-//}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+}
+def siteUrl = 'https://github.com/mayuragrawal121/maventestlib'      // Homepage URL of the library
+def gitUrl = 'https://github.com/mayuragrawal121/maventestlib.git'   // Git repository URL
+group = "com.github.mayuragrawal121"                                          // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name 'com.github.mayuragrawal121:maventestlib' // TODO
+                description = 'test project' // TODO
+                url siteUrl
+
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'mayur01' // TODO
+                        name 'Mayur Agrawal' // TODO
+                        email 'mayuragrawal212@gmail.com' // TODO
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+// https://github.com/bintray/gradle-bintray-plugin
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maventestlib"
+        // it is the name that appears in bintray when logged
+        name = "maventestlib" // TODO
+        userOrg ="mayur"
+        desc = 'what a fantastic package indeed!'
+        websiteUrl = siteUrl
+        issueTrackerUrl = 'https://github.com/mayuragrawal121/maventestlib/issues'
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+        version {
+            gpg {
+                sign = true //Determines whether to GPG sign the files. The default is false
+                passphrase = properties.getProperty("bintray.gpg.password") //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
+//apply from: 'https://raw.github.com/mayuragrawal121/maventestlib/master/maventestlib.gradle'
+//https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/install.gradle
