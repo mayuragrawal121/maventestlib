@@ -166,5 +166,5 @@ bintray {
         }
     }
 }
-//apply from: 'https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/build.gradle'
+apply from: 'https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/gradle-mvn-push.gradle'
 //https://raw.githubusercontent.com/mayuragrawal121/maventestlib/master/install.gradle

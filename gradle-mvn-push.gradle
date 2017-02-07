@@ -16,11 +16,11 @@ def getSnapshotRepositoryUrl() {
 }
 
 def getRepositoryUsername() {
-    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+    return hasProperty('NEXUS_USERNAME') ? "mayur01" : ""
 }
 
 def getRepositoryPassword() {
-    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+    return hasProperty('NEXUS_PASSWORD') ? "myu@#123" : ""
 }
 
 afterEvaluate { project ->
@@ -29,9 +29,9 @@ afterEvaluate { project ->
             mavenDeployer {
                 beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
-                pom.groupId = GROUP
-                pom.artifactId = POM_ARTIFACT_ID
-                pom.version = VERSION_NAME
+                pom.groupId = "com.github.mayuragrawal121"
+                pom.artifactId = "maventestlib"
+                pom.version = "1.0.0-SNAPSHOT"
 
                 repository(url: getReleaseRepositoryUrl()) {
                     authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
